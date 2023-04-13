@@ -19,6 +19,7 @@ import {
 } from "react-icons/bs";
 import { RiDoubleQuotesL } from "react-icons/ri";
 import InsertLink from "../link/InsertLink";
+import { linkOption } from "../link/LinkForm";
 
 interface Props {
   editor: Editor | null;
@@ -60,6 +61,10 @@ const ToolBar: FC<Props> = ({ editor }): JSX.Element | null => {
     return "Paragraph";
   };
 
+  const handleLinkSubmit = (link: linkOption) => {
+    console.log(link);
+  };
+
   const Head = () => {
     return (
       <div className="flex items-center space-x-2 text-primary-dark dark:text-primary">
@@ -76,19 +81,31 @@ const ToolBar: FC<Props> = ({ editor }): JSX.Element | null => {
       <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
 
       <div className="flex items-center space-x-3">
-        <Button active={editor.isActive('bold')} onClick={() => getFocusedEditor(editor).toggleBold().run()}>
+        <Button
+          active={editor.isActive("bold")}
+          onClick={() => getFocusedEditor(editor).toggleBold().run()}
+        >
           <BsTypeBold />
         </Button>
 
-        <Button active={editor.isActive('italic')} onClick={() => getFocusedEditor(editor).toggleItalic().run()}>
+        <Button
+          active={editor.isActive("italic")}
+          onClick={() => getFocusedEditor(editor).toggleItalic().run()}
+        >
           <BsTypeItalic />
         </Button>
 
-        <Button active={editor.isActive('underline')} onClick={() => getFocusedEditor(editor).toggleUnderline().run()}>
+        <Button
+          active={editor.isActive("underline")}
+          onClick={() => getFocusedEditor(editor).toggleUnderline().run()}
+        >
           <BsTypeUnderline />
         </Button>
 
-        <Button active={editor.isActive('strike')} onClick={() => getFocusedEditor(editor).toggleStrike().run()}>
+        <Button
+          active={editor.isActive("strike")}
+          onClick={() => getFocusedEditor(editor).toggleStrike().run()}
+        >
           <BsTypeStrikethrough />
         </Button>
       </div>
@@ -96,25 +113,40 @@ const ToolBar: FC<Props> = ({ editor }): JSX.Element | null => {
       <div className="h-4 w-[1px] bg-secondary-dark dark:bg-secondary-light mx-8" />
 
       <div className="flex items-center space-x-3">
-        <Button active={editor.isActive('blockquote')} onClick={() => getFocusedEditor(editor).toggleBlockquote().run()}>
+        <Button
+          active={editor.isActive("blockquote")}
+          onClick={() => getFocusedEditor(editor).toggleBlockquote().run()}
+        >
           <RiDoubleQuotesL />
         </Button>
 
-        <Button active={editor.isActive('code')} onClick={() => getFocusedEditor(editor).toggleCode().run()}>
+        <Button
+          active={editor.isActive("code")}
+          onClick={() => getFocusedEditor(editor).toggleCode().run()}
+        >
           <BsCode />
         </Button>
 
-        <Button active={editor.isActive('codeBlock')} onClick={() => getFocusedEditor(editor).toggleCodeBlock().run()}>
+        <Button
+          active={editor.isActive("codeBlock")}
+          onClick={() => getFocusedEditor(editor).toggleCodeBlock().run()}
+        >
           <BsBraces />
         </Button>
 
-      <InsertLink/>
+        <InsertLink onSubmit={handleLinkSubmit} />
 
-        <Button active={editor.isActive('orderedList')} onClick={() => getFocusedEditor(editor).toggleOrderedList().run()}>
+        <Button
+          active={editor.isActive("orderedList")}
+          onClick={() => getFocusedEditor(editor).toggleOrderedList().run()}
+        >
           <BsListOl />
         </Button>
 
-        <Button active={editor.isActive('bulletList')} onClick={() => getFocusedEditor(editor).toggleBulletList().run()}>
+        <Button
+          active={editor.isActive("bulletList")}
+          onClick={() => getFocusedEditor(editor).toggleBulletList().run()}
+        >
           <BsListUl />
         </Button>
       </div>

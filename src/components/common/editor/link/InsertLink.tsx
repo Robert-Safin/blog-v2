@@ -2,9 +2,13 @@ import { FC, useState } from "react";
 import { BsLink45Deg } from "react-icons/bs";
 import Button from "../toolbar/Button";
 import LinkForm from "./LinkForm";
+import { linkOption } from "../link/LinkForm";
 
-interface Props {}
-const InsertLink: FC<Props> = () => {
+interface Props {
+  onSubmit(link: linkOption): void
+
+}
+const InsertLink: FC<Props> = ({onSubmit}) => {
   const [visible, setVisible] = useState(false);
   return (
     <div
@@ -18,7 +22,7 @@ const InsertLink: FC<Props> = () => {
       </Button>
 
       <div className="absolute top-full mt-4 right-0 z-50">
-        <LinkForm visible={visible} />
+        <LinkForm visible={visible}  onSubmit={onSubmit}/>
       </div>
     </div>
   );
